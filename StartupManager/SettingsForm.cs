@@ -44,12 +44,7 @@ namespace StartupManager
             {
                 Properties.Settings.Default.isStartUpEnabled = false;
                 Properties.Settings.Default.Save();
-                string file_name = "C:\\Users\\Josh\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\StartupManager.lnk";
-                //remove program from startup folder
-                if (System.IO.File.Exists(@file_name))
-                {
-                    System.IO.File.Delete(@file_name);
-                }
+                Functions.RemoveFromStartUp();
             }
         }
 

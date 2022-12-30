@@ -110,16 +110,25 @@ public class Functions
     }   
     public static void AddToStartUp()
     {
-        if (!System.IO.File.Exists(@"C:\Users\Josh\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\StartupManager.lnk"))
+        string startupPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartup);
+        string shortcutPath = Path.Combine(startupPath, "StartupManager.lnk");
+        if (!System.IO.File.Exists(@shortcutPath))
         {
-            string startupLink = Environment.GetFolderPath(Environment.SpecialFolder.Startup)
-                + Path.DirectorySeparatorChar + Application.ProductName + ".lnk";
             var shell = new WshShell();
-            var shortcut = shell.CreateShortcut(startupLink) as IWshShortcut;
+            var shortcut = shell.CreateShortcut(shortcutPath) as IWshShortcut;
             shortcut.TargetPath = Application.ExecutablePath;
             shortcut.WorkingDirectory = Application.StartupPath;
-            //shortcut...
+            
             shortcut.Save();
+        }
+    }
+    public static void RemoveFromStartUp()
+    {
+        string startupPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartup);
+        string shortcutPath = Path.Combine(startupPath, "StartupManager.lnk");
+        if (System.IO.File.Exists(@shortcutPath))
+        {
+            System.IO.File.Delete(@shortcutPath);
         }
     }
 }
