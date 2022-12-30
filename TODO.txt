@@ -1,6 +1,0 @@
-TODO:
-	- Make application add to start folder (use check box to check if clicked)
-	- save application settings
-	- Fix file open and close
-	
-	- Fix process timer delay for starting processes
