@@ -72,7 +72,7 @@ public class Functions
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(ex.Message);
         }
     }
     public static void AddRow(DataGridView dgv, string Path, string Name, int Delay)

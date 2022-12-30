@@ -48,16 +48,27 @@ namespace StartupManager
 
         private void Main_Load(object sender, EventArgs e)
         {
+            FileStream fs;
+            if (!File.Exists("startup.dat"))
+            {
+                fs = File.Create("startup.dat");
+                fs.Close();
+                statusStripStatus.Text = "File Created";
+            }
+
+            Functions.ReadFile(dataGridView1, "startup.dat");
+
             if (Properties.Settings.Default.firstStartUp) {
                 Properties.Settings.Default.firstStartUp = false;
                 Properties.Settings.Default.taskbarMode = true;
                 Properties.Settings.Default.isStartUpEnabled = true;
                 Properties.Settings.Default.Save();
-
-                Functions.AddToStartUp();
+                
                 this.WindowState = FormWindowState.Normal;
-
+                Functions.AddToStartUp();
+               
                 MessageBox.Show("Thank you for using Startup Manager!\nThe program will start in taskbar mode from now on.\nThis can be changed in the setings", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
             else
             {
@@ -72,17 +83,16 @@ namespace StartupManager
                     this.WindowState = FormWindowState.Normal;
                 }
                 
-                Functions.ReadFile(dataGridView1, "data.bin");
                 if (isStartup)
                 {
                     int delay = 0;
                     for (int i = 0; i < dataGridView1.Rows.Count; i++)
                     {
                         delay += Convert.ToInt32(dataGridView1.Rows[i].Cells["delayCol"].Value);
+                        statusStripStatus.Text = "Start Process" + dataGridView1.Rows[i].Cells["nameCol"].Value.ToString();
                     }
                     Functions.StartProcesses(dataGridView1);
                     Thread.Sleep((delay + 1) * 1000);
-                    Environment.Exit(0);
                 }
             }
         }
@@ -91,15 +101,14 @@ namespace StartupManager
         {
             int rowIndex = dataGridView1.CurrentCell.RowIndex;
             dataGridView1.Rows.RemoveAt(rowIndex);
-            Functions.SaveFile(dataGridView1, "data.bin");
+            Functions.SaveFile(dataGridView1, "startup.dat");
         }
        
         private void Main_Closing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
-            Functions.SaveFile(dataGridView1, "data.bin");
-            this.WindowState = FormWindowState.Minimized;
-            this.Hide();
+            Functions.SaveFile(dataGridView1, "startup.dat");
+            Environment.Exit(0);
         }
 
         private void EditToolStripMenuItem_Click(object sender, EventArgs e)
@@ -119,19 +128,30 @@ namespace StartupManager
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dataGridView1.CurrentRow.SetValues(NameEdit.Text, DelayEdit.Text, PathEdit.Text);
-            Functions.SaveFile(dataGridView1, "data.bin");
+            Functions.SaveFile(dataGridView1, "startup.dat");
         }
 
         private void ManualStartToolStrip_Click(object sender, EventArgs e)
         {
-            int delay = 0;
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            int rows = dataGridView1.Rows.Count;
+            if (rows > 0)
             {
-                delay += Convert.ToInt32(dataGridView1.Rows[i].Cells["delayCol"].Value);
+                int delay = 0;
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    delay += Convert.ToInt32(dataGridView1.Rows[i].Cells["delayCol"].Value);
+                    statusStripStatus.ForeColor = Color.Gray;
+                    statusStripStatus.Text = "Starting " + dataGridView1[0, i].Value;
+                }
+                Functions.StartProcesses(dataGridView1);
+                Thread.Sleep((delay + 1) * 1000);
             }
-            Functions.StartProcesses(dataGridView1);
-            Thread.Sleep((delay+1)*1000);
-            Environment.Exit(0);
+            else
+            {
+                statusStripStatus.ForeColor = Color.Red;
+                statusStripStatus.Text = "No processes to start";
+            }
+           
 
         }
        

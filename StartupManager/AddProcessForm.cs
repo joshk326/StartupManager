@@ -41,7 +41,7 @@ namespace StartupManager
         private void AddNewBTN_Click(object sender, EventArgs e)
         { 
             Functions.AddRow(MainForm.dataGridView1, path, ProcessNametxt.Text, (int)DelayUpDown.Value);
-            Functions.SaveFile(MainForm.dataGridView1, "data.bin");
+            Functions.SaveFile(MainForm.dataGridView1, "startup.dat");
             this.Close();
         }
     }
