@@ -113,22 +113,9 @@ namespace StartupManager
 
         private void EditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NameEdit.Text = dataGridView1.CurrentRow.Cells["nameCol"].Value.ToString();
-            DelayEdit.Text = dataGridView1.CurrentRow.Cells["delayCol"].Value.ToString();
-            PathEdit.Text = dataGridView1.CurrentRow.Cells["pathCol"].Value.ToString();
-        }
-
-        private void EditToolStripMenuItem_MouseHover(object sender, EventArgs e)
-        {
-            NameEdit.Text = dataGridView1.CurrentRow.Cells["nameCol"].Value.ToString();
-            DelayEdit.Text = dataGridView1.CurrentRow.Cells["delayCol"].Value.ToString();
-            PathEdit.Text = dataGridView1.CurrentRow.Cells["pathCol"].Value.ToString();
-        }
-
-        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            dataGridView1.CurrentRow.SetValues(NameEdit.Text, DelayEdit.Text, PathEdit.Text);
-            Functions.SaveFile(dataGridView1, "startup.dat");
+            EditForm EF = new EditForm();
+            EF.CurrentRow = dataGridView1.CurrentRow;
+            EF.Show();
         }
 
         private void ManualStartToolStrip_Click(object sender, EventArgs e)
@@ -190,6 +177,21 @@ namespace StartupManager
         private void CloseApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void DgvContextMenu_Opening(object sender, CancelEventArgs e)
+        {
+            if (dataGridView1.RowCount == 0)
+            {
+                editToolStripMenuItem.Visible = false;
+                deleteProcessToolStripMenuItem.Visible = false;
+            }
+            else
+            {
+                editToolStripMenuItem.Visible = true;
+                deleteProcessToolStripMenuItem.Visible = true;
+
+            }
         }
     }
 }

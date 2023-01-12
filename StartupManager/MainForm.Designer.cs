@@ -45,14 +45,6 @@ namespace StartupManager
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.newProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.NameEdit = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.DelayEdit = new System.Windows.Forms.ToolStripTextBox();
-            this.pathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PathEdit = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -79,6 +71,7 @@ namespace StartupManager
             this.ToolBarStrip.AutoSize = false;
             this.ToolBarStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.ToolBarStrip.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolBarStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ToolBarStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CreateToolStrip,
             this.ManualStartToolStrip,
@@ -93,7 +86,7 @@ namespace StartupManager
             // CreateToolStrip
             // 
             this.CreateToolStrip.Name = "CreateToolStrip";
-            this.CreateToolStrip.Size = new System.Drawing.Size(77, 17);
+            this.CreateToolStrip.Size = new System.Drawing.Size(92, 16);
             this.CreateToolStrip.Text = "Add Process";
             this.CreateToolStrip.Click += new System.EventHandler(this.CreateToolStrip_Click);
             // 
@@ -101,14 +94,14 @@ namespace StartupManager
             // 
             this.ManualStartToolStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.ManualStartToolStrip.Name = "ManualStartToolStrip";
-            this.ManualStartToolStrip.Size = new System.Drawing.Size(75, 17);
+            this.ManualStartToolStrip.Size = new System.Drawing.Size(89, 16);
             this.ManualStartToolStrip.Text = "Manual Start";
             this.ManualStartToolStrip.Click += new System.EventHandler(this.ManualStartToolStrip_Click);
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(10, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(11, 16);
             this.toolStripStatusLabel1.Text = "|";
             // 
             // HelpDropDown
@@ -122,37 +115,38 @@ namespace StartupManager
             this.HelpDropDown.Image = ((System.Drawing.Image)(resources.GetObject("HelpDropDown.Image")));
             this.HelpDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HelpDropDown.Name = "HelpDropDown";
-            this.HelpDropDown.Size = new System.Drawing.Size(46, 20);
+            this.HelpDropDown.Size = new System.Drawing.Size(51, 20);
             this.HelpDropDown.Text = "Help";
             // 
             // AboutMenuItem
             // 
             this.AboutMenuItem.Name = "AboutMenuItem";
-            this.AboutMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.AboutMenuItem.Size = new System.Drawing.Size(201, 26);
             this.AboutMenuItem.Text = "About";
             this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
             // 
             // SettingsMenuItem
             // 
             this.SettingsMenuItem.Name = "SettingsMenuItem";
-            this.SettingsMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.SettingsMenuItem.Size = new System.Drawing.Size(201, 26);
             this.SettingsMenuItem.Text = "Settings";
             this.SettingsMenuItem.Click += new System.EventHandler(this.SettingsMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(166, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(198, 6);
             // 
             // closeApplicationToolStripMenuItem
             // 
             this.closeApplicationToolStripMenuItem.Name = "closeApplicationToolStripMenuItem";
-            this.closeApplicationToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.closeApplicationToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
             this.closeApplicationToolStripMenuItem.Text = "Close Application";
             this.closeApplicationToolStripMenuItem.Click += new System.EventHandler(this.CloseApplicationToolStripMenuItem_Click);
             // 
             // DgvContextMenu
             // 
+            this.DgvContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.DgvContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.refreshToolStripMenuItem,
             this.toolStripSeparator2,
@@ -160,99 +154,39 @@ namespace StartupManager
             this.editToolStripMenuItem,
             this.deleteProcessToolStripMenuItem});
             this.DgvContextMenu.Name = "contextMenuStrip1";
-            this.DgvContextMenu.Size = new System.Drawing.Size(118, 98);
+            this.DgvContextMenu.Size = new System.Drawing.Size(211, 134);
+            this.DgvContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.DgvContextMenu_Opening);
             // 
             // refreshToolStripMenuItem
             // 
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.refreshToolStripMenuItem.Text = "Refresh";
             this.refreshToolStripMenuItem.Click += new System.EventHandler(this.RefreshToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(114, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(207, 6);
             // 
             // newProcessToolStripMenuItem
             // 
             this.newProcessToolStripMenuItem.Name = "newProcessToolStripMenuItem";
-            this.newProcessToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.newProcessToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.newProcessToolStripMenuItem.Text = "Add";
             this.newProcessToolStripMenuItem.Click += new System.EventHandler(this.CreateProcessContext_Click);
             // 
             // editToolStripMenuItem
             // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.NameEdit,
-            this.toolStripMenuItem2,
-            this.DelayEdit,
-            this.pathToolStripMenuItem,
-            this.PathEdit,
-            this.toolStripSeparator3,
-            this.saveToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.EditToolStripMenuItem_Click);
-            this.editToolStripMenuItem.MouseHover += new System.EventHandler(this.EditToolStripMenuItem_MouseHover);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
-            this.toolStripMenuItem1.Text = "Name:";
-            // 
-            // NameEdit
-            // 
-            this.NameEdit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NameEdit.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.NameEdit.Name = "NameEdit";
-            this.NameEdit.Size = new System.Drawing.Size(100, 23);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(160, 22);
-            this.toolStripMenuItem2.Text = "Delay:";
-            // 
-            // DelayEdit
-            // 
-            this.DelayEdit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DelayEdit.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.DelayEdit.Name = "DelayEdit";
-            this.DelayEdit.Size = new System.Drawing.Size(100, 23);
-            // 
-            // pathToolStripMenuItem
-            // 
-            this.pathToolStripMenuItem.Name = "pathToolStripMenuItem";
-            this.pathToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.pathToolStripMenuItem.Text = "Path:";
-            // 
-            // PathEdit
-            // 
-            this.PathEdit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PathEdit.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.PathEdit.Name = "PathEdit";
-            this.PathEdit.Size = new System.Drawing.Size(100, 23);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(157, 6);
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // deleteProcessToolStripMenuItem
             // 
             this.deleteProcessToolStripMenuItem.Name = "deleteProcessToolStripMenuItem";
-            this.deleteProcessToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.deleteProcessToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.deleteProcessToolStripMenuItem.Text = "Remove";
             this.deleteProcessToolStripMenuItem.Click += new System.EventHandler(this.DeleteProcessToolStripMenuItem_Click);
             // 
@@ -268,6 +202,7 @@ namespace StartupManager
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dataGridView1.ColumnHeadersHeight = 29;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameCol,
@@ -278,6 +213,7 @@ namespace StartupManager
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(345, 438);
             this.dataGridView1.TabIndex = 1;
@@ -285,6 +221,7 @@ namespace StartupManager
             // nameCol
             // 
             this.nameCol.HeaderText = "Name";
+            this.nameCol.MinimumWidth = 6;
             this.nameCol.Name = "nameCol";
             this.nameCol.ReadOnly = true;
             this.nameCol.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -293,6 +230,7 @@ namespace StartupManager
             // delayCol
             // 
             this.delayCol.HeaderText = "Delay";
+            this.delayCol.MinimumWidth = 6;
             this.delayCol.Name = "delayCol";
             this.delayCol.ReadOnly = true;
             this.delayCol.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -301,6 +239,7 @@ namespace StartupManager
             // pathCol
             // 
             this.pathCol.HeaderText = "Path";
+            this.pathCol.MinimumWidth = 6;
             this.pathCol.Name = "pathCol";
             this.pathCol.ReadOnly = true;
             this.pathCol.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -315,47 +254,49 @@ namespace StartupManager
             // 
             // TaskTrayContextMenu
             // 
+            this.TaskTrayContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.TaskTrayContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showApplicationToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.TaskTrayContextMenu.Name = "TaskTrayContextMenu";
-            this.TaskTrayContextMenu.Size = new System.Drawing.Size(168, 54);
+            this.TaskTrayContextMenu.Size = new System.Drawing.Size(196, 58);
             // 
             // showApplicationToolStripMenuItem
             // 
             this.showApplicationToolStripMenuItem.Name = "showApplicationToolStripMenuItem";
-            this.showApplicationToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.showApplicationToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
             this.showApplicationToolStripMenuItem.Text = "Show Application";
             this.showApplicationToolStripMenuItem.Click += new System.EventHandler(this.ShowApplicationTaskItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(164, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(192, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitTaskItem_Click);
             // 
             // statusStrip1
             // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusStripLabel,
             this.statusStripStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 469);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 465);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(369, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(369, 26);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // statusStripLabel
             // 
             this.statusStripLabel.Name = "statusStripLabel";
-            this.statusStripLabel.Size = new System.Drawing.Size(42, 17);
+            this.statusStripLabel.Size = new System.Drawing.Size(52, 20);
             this.statusStripLabel.Text = "Status:";
             // 
             // statusStripStatus
@@ -363,12 +304,12 @@ namespace StartupManager
             this.statusStripStatus.ForeColor = System.Drawing.Color.Gray;
             this.statusStripStatus.LinkColor = System.Drawing.SystemColors.Control;
             this.statusStripStatus.Name = "statusStripStatus";
-            this.statusStripStatus.Size = new System.Drawing.Size(35, 17);
+            this.statusStripStatus.Size = new System.Drawing.Size(43, 20);
             this.statusStripStatus.Text = "idle...";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(369, 491);
             this.Controls.Add(this.statusStrip1);
@@ -409,14 +350,6 @@ namespace StartupManager
         public System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel ManualStartToolStrip;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripTextBox NameEdit;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripTextBox DelayEdit;
-        private System.Windows.Forms.ToolStripMenuItem pathToolStripMenuItem;
-        private System.Windows.Forms.ToolStripTextBox PathEdit;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn delayCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn pathCol;
