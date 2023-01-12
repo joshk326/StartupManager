@@ -127,7 +127,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -139,7 +139,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_2862752966794E098977C05A0A1993D2"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder]StartupManager"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -188,7 +188,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:StartupManagerSetup"
         "ProductCode" = "8:{3034D397-FE84-41C4-B34B-FE49A8E56B5C}"
-        "PackageCode" = "8:{F212E882-6AEA-4EF3-B984-47B7A84D65BE}"
+        "PackageCode" = "8:{73F01E0E-7308-437A-849D-1EFB24B4D248}"
         "UpgradeCode" = "8:{F54C5D65-1F4A-44D8-84C7-7EBE99564190}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -503,8 +503,8 @@
                             "Type" = "3:3"
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:#1203"
+                            "Setting" = "3:2"
+                            "Value" = "8:The installer will guide you through the steps required to install StartupManager on your computer."
                             "DefaultValue" = "8:#1203"
                             "UsePlugInResources" = "11:TRUE"
                             }

@@ -17,6 +17,7 @@ public class Functions
         FileStream file = System.IO.File.Open(file_name, FileMode.Create);
         using (BinaryWriter bw = new BinaryWriter(file))
         {
+           
             bw.Write(dgv.Columns.Count);
             bw.Write(dgv.Rows.Count);
             foreach (DataGridViewRow dgvR in dgv.Rows)
@@ -110,7 +111,20 @@ public class Functions
 
         return;
         
-    }   
+    }
+    public static void SingleProcessStart(DataGridViewRow CurrentRow)
+    {
+        string path = CurrentRow.Cells["pathCol"].Value.ToString();
+        int delay = Convert.ToInt32(CurrentRow.Cells["delayCol"].Value.ToString());
+
+        var elapsed = Task.Run(async () => {
+            Stopwatch sw = Stopwatch.StartNew();
+            await Task.Delay(delay * 1000);
+            System.Diagnostics.Process.Start(@path);
+            sw.Stop();
+            return sw.ElapsedMilliseconds;
+        });
+    }
     public static void AddToStartUp()
     {
         string startupPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartup);

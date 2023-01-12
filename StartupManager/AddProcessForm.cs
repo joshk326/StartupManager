@@ -39,10 +39,17 @@ namespace StartupManager
         }
 
         private void AddNewBTN_Click(object sender, EventArgs e)
-        { 
-            Functions.AddRow(MainForm.dataGridView1, path, ProcessNametxt.Text, (int)DelayUpDown.Value);
-            Functions.SaveFile(MainForm.dataGridView1, "startup.dat");
-            this.Close();
+        {
+            if (ProcessNametxt.Text != "" || ProcessPathtxt.Text != "")
+            {
+                Functions.AddRow(MainForm.dataGridView1, path, ProcessNametxt.Text, (int)DelayUpDown.Value);
+                Functions.SaveFile(MainForm.dataGridView1, "startup.dat");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please fill in all fields");
+            }
         }
     }
 }
