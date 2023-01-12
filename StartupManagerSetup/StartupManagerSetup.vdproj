@@ -169,7 +169,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:StartupManagerSetup"
         "ProductCode" = "8:{3034D397-FE84-41C4-B34B-FE49A8E56B5C}"
-        "PackageCode" = "8:{20E344DE-8CF5-425E-8D81-8983795863A5}"
+        "PackageCode" = "8:{0308D286-7DD6-4E51-B664-E9B3FD8179EE}"
         "UpgradeCode" = "8:{F54C5D65-1F4A-44D8-84C7-7EBE99564190}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -617,7 +617,7 @@
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
                             "Setting" = "3:2"
-                            "Value" = "8:The installer will guide you through the steps required to install StartupManager on your computer. test"
+                            "Value" = "8:The installer will guide you through the steps required to install StartupManager on your computer."
                             "DefaultValue" = "8:#1203"
                             "UsePlugInResources" = "11:TRUE"
                             }
