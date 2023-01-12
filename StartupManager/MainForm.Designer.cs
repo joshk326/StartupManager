@@ -154,7 +154,7 @@ namespace StartupManager
             this.editToolStripMenuItem,
             this.deleteProcessToolStripMenuItem});
             this.DgvContextMenu.Name = "contextMenuStrip1";
-            this.DgvContextMenu.Size = new System.Drawing.Size(133, 106);
+            this.DgvContextMenu.Size = new System.Drawing.Size(211, 134);
             this.DgvContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.DgvContextMenu_Opening);
             // 
             // refreshToolStripMenuItem
@@ -179,15 +179,17 @@ namespace StartupManager
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Visible = false;
             this.editToolStripMenuItem.Click += new System.EventHandler(this.EditToolStripMenuItem_Click);
             // 
             // deleteProcessToolStripMenuItem
             // 
             this.deleteProcessToolStripMenuItem.Name = "deleteProcessToolStripMenuItem";
-            this.deleteProcessToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
+            this.deleteProcessToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.deleteProcessToolStripMenuItem.Text = "Remove";
+            this.deleteProcessToolStripMenuItem.Visible = false;
             this.deleteProcessToolStripMenuItem.Click += new System.EventHandler(this.DeleteProcessToolStripMenuItem_Click);
             // 
             // openFileDialog1

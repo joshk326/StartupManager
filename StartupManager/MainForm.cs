@@ -181,16 +181,10 @@ namespace StartupManager
 
         private void DgvContextMenu_Opening(object sender, CancelEventArgs e)
         {
-            if (dataGridView1.RowCount == 0)
-            {
-                editToolStripMenuItem.Visible = false;
-                deleteProcessToolStripMenuItem.Visible = false;
-            }
-            else
+            if (dataGridView1.RowCount > 0)
             {
                 editToolStripMenuItem.Visible = true;
                 deleteProcessToolStripMenuItem.Visible = true;
-
             }
         }
     }
