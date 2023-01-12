@@ -86,8 +86,8 @@ namespace StartupManager
             // CreateToolStrip
             // 
             this.CreateToolStrip.Name = "CreateToolStrip";
-            this.CreateToolStrip.Size = new System.Drawing.Size(92, 16);
-            this.CreateToolStrip.Text = "Add Process";
+            this.CreateToolStrip.Size = new System.Drawing.Size(33, 16);
+            this.CreateToolStrip.Text = "Add";
             this.CreateToolStrip.Click += new System.EventHandler(this.CreateToolStrip_Click);
             // 
             // ManualStartToolStrip
@@ -154,39 +154,39 @@ namespace StartupManager
             this.editToolStripMenuItem,
             this.deleteProcessToolStripMenuItem});
             this.DgvContextMenu.Name = "contextMenuStrip1";
-            this.DgvContextMenu.Size = new System.Drawing.Size(211, 134);
+            this.DgvContextMenu.Size = new System.Drawing.Size(133, 106);
             this.DgvContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.DgvContextMenu_Opening);
             // 
             // refreshToolStripMenuItem
             // 
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.refreshToolStripMenuItem.Text = "Refresh";
             this.refreshToolStripMenuItem.Click += new System.EventHandler(this.RefreshToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(207, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(129, 6);
             // 
             // newProcessToolStripMenuItem
             // 
             this.newProcessToolStripMenuItem.Name = "newProcessToolStripMenuItem";
-            this.newProcessToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.newProcessToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.newProcessToolStripMenuItem.Text = "Add";
             this.newProcessToolStripMenuItem.Click += new System.EventHandler(this.CreateProcessContext_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.EditToolStripMenuItem_Click);
             // 
             // deleteProcessToolStripMenuItem
             // 
             this.deleteProcessToolStripMenuItem.Name = "deleteProcessToolStripMenuItem";
-            this.deleteProcessToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.deleteProcessToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.deleteProcessToolStripMenuItem.Text = "Remove";
             this.deleteProcessToolStripMenuItem.Click += new System.EventHandler(this.DeleteProcessToolStripMenuItem_Click);
             // 
