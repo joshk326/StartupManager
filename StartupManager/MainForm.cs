@@ -48,8 +48,6 @@ namespace StartupManager
 
         private void Main_Load(object sender, EventArgs e)
         {
-            string startupPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartup);
-            Console.WriteLine(startupPath);
             FileStream fs;
             if (!File.Exists("startup.dat"))
             {
@@ -57,7 +55,7 @@ namespace StartupManager
                 fs.Close();
                 statusStripStatus.Text = "File Created";
             }
-
+            
             Functions.ReadFile(dataGridView1, "startup.dat");
 
             if (Properties.Settings.Default.firstStartUp) {

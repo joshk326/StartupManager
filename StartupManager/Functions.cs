@@ -49,20 +49,23 @@ public class Functions
             FileStream file = System.IO.File.Open(file_name, FileMode.Open);
 
             dgv.Rows.Clear();
-            using (BinaryReader bw = new BinaryReader(file))
+            using (BinaryReader br = new BinaryReader(file))
             {
-                int n = bw.ReadInt32();
-                int m = bw.ReadInt32();
-                for (int i = 0; i < m; ++i)
+                while (br.PeekChar() != -1)
                 {
-                    dgv.Rows.Add();
-                    for (int j = 0; j < n; ++j)
+                    int n = br.ReadInt32();
+                    int m = br.ReadInt32();
+                    for (int i = 0; i < m; ++i)
                     {
-                        if (bw.ReadBoolean())
+                        dgv.Rows.Add();
+                        for (int j = 0; j < n; ++j)
                         {
-                            dgv.Rows[i].Cells[j].Value = bw.ReadString();
+                            if (br.ReadBoolean())
+                            {
+                                dgv.Rows[i].Cells[j].Value = br.ReadString();
+                            }
+                            else br.ReadBoolean();
                         }
-                        else bw.ReadBoolean();
                     }
                 }
 
