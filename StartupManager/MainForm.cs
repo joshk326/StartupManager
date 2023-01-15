@@ -45,6 +45,12 @@ namespace StartupManager
 
         private void Main_Load(object sender, EventArgs e)
         {
+
+            if (Process.GetProcessesByName(Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1) {
+                MessageBox.Show("Application is already running");
+                Environment.Exit(0);
+            }
+
             FileStream fs;
             if (!File.Exists(absPath))
             {
