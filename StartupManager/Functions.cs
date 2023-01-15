@@ -125,7 +125,6 @@ public class Functions
         //string startupPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartup);
         string startupPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
         string shortcutPath = Path.Combine(startupPath, "StartupManager.lnk");
-        Console.WriteLine(shortcutPath);
         if (!System.IO.File.Exists(@shortcutPath))
         {
             var shell = new WshShell();

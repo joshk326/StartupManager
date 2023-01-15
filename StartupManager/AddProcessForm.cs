@@ -20,7 +20,6 @@ namespace StartupManager
             MainForm = f1obj;
         }
 
-
         private void SelectProcessPath_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
