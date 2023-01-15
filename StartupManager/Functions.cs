@@ -106,7 +106,7 @@ public class Functions
             
             using (StreamWriter sw = System.IO.File.AppendText(MF.logPath))
             {
-                sw.WriteLine("Process Name: " + dgvR.Cells["nameCol"].Value.ToString() + " " + "Path: " + dgvR.Cells["pathCol"].Value.ToString() + " " + "Startup Time: " + elapsed.Result + "ms");
+                sw.WriteLine("Process Name: " + dgvR.Cells["nameCol"].Value.ToString() + ", " + "Path: " + dgvR.Cells["pathCol"].Value.ToString() + ", " + "Startup Time: " + elapsed.Result + "ms");
             }
 
         }
@@ -129,7 +129,7 @@ public class Functions
 
         using (StreamWriter sw = System.IO.File.AppendText(MF.logPath))
         {
-            sw.WriteLine("Process Name: " + CurrentRow.Cells["nameCol"].Value.ToString() + " " + "Path: " + CurrentRow.Cells["pathCol"].Value.ToString() + " " + "Startup Time: " + elapsed.Result + "ms");
+            sw.WriteLine("Process Name: " + CurrentRow.Cells["nameCol"].Value.ToString() + ", " + "Path: " + CurrentRow.Cells["pathCol"].Value.ToString() + ", " + "Startup Time: " + elapsed.Result + "ms");
         }
     }
     public static void AddToStartUp()
