@@ -105,7 +105,7 @@ namespace StartupManager
         {
             int rowIndex = dataGridView1.CurrentCell.RowIndex;
             dataGridView1.Rows.RemoveAt(rowIndex);
-            Functions.SaveFile(dataGridView1, "startup.dat");
+            Functions.SaveFile(dataGridView1, absPath);
             if (dataGridView1.RowCount == 0)
             {
                 editToolStripMenuItem.Visible = false;
