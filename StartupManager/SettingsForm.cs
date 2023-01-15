@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace StartupManager
 {
@@ -60,6 +61,13 @@ namespace StartupManager
                 Properties.Settings.Default.taskbarMode = false;
                 Properties.Settings.Default.Save();
             }
+        }
+
+        private void OpenLogBTN_Click(object sender, EventArgs e)
+        {
+            MainForm MF = new MainForm();
+            Process.Start("explorer.exe", "/select," + MF.logPath);
+
         }
     }
 }

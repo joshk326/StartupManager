@@ -1,4 +1,5 @@
 ﻿using IWshRuntimeLibrary;
+using StartupManager;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -7,6 +8,7 @@ using System.Windows.Forms;
 
 public class Functions
 {
+    static MainForm MF = new MainForm();
     public static void SaveFile(DataGridView dgv, string file_name)
     {
         FileStream file = System.IO.File.Open(file_name, FileMode.Create);
@@ -101,6 +103,11 @@ public class Functions
                 sw.Stop();
                 return sw.ElapsedMilliseconds;
             });
+            
+            using (StreamWriter sw = System.IO.File.AppendText(MF.logPath))
+            {
+                sw.WriteLine("Process Name: " + dgvR.Cells["nameCol"].Value.ToString() + " " + "Path: " + dgvR.Cells["pathCol"].Value.ToString() + " " + "Startup Time: " + elapsed.Result + "ms");
+            }
 
         }
 
@@ -119,6 +126,11 @@ public class Functions
             sw.Stop();
             return sw.ElapsedMilliseconds;
         });
+
+        using (StreamWriter sw = System.IO.File.AppendText(MF.logPath))
+        {
+            sw.WriteLine("Process Name: " + CurrentRow.Cells["nameCol"].Value.ToString() + " " + "Path: " + CurrentRow.Cells["pathCol"].Value.ToString() + " " + "Startup Time: " + elapsed.Result + "ms");
+        }
     }
     public static void AddToStartUp()
     {

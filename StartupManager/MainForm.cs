@@ -21,6 +21,7 @@ namespace StartupManager
         private static string dirPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\StartupManager";
         private static string fileName = "startup.dat";
         public string absPath = Path.Combine(dirPath, fileName);
+        public string logPath = Path.Combine(dirPath, "log.txt");
 
         public MainForm()
         {
@@ -60,6 +61,7 @@ namespace StartupManager
                 statusStripStatus.Text = "data file created";
             }
             
+
             Functions.ReadFile(dataGridView1, absPath);
 
             if (Properties.Settings.Default.firstStartUp) {
@@ -67,15 +69,23 @@ namespace StartupManager
                 Properties.Settings.Default.taskbarMode = true;
                 Properties.Settings.Default.isStartUpEnabled = true;
                 Properties.Settings.Default.Save();
-                
+
+                FileStream fs;
+                fs = File.Create(logPath);
+                fs.Close();
+
                 this.WindowState = FormWindowState.Normal;
                 Functions.AddToStartUp();
                
                 MessageBox.Show("Thank you for using Startup Manager!\nThe program will start in taskbar mode from now on.\nThis can be changed in the setings", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
             }
             else
             {
+                if (File.Exists(logPath))
+                {
+                    File.WriteAllText(logPath, string.Empty);
+                }
+                
                 if (Properties.Settings.Default.taskbarMode)
                 {
                     this.Hide();
