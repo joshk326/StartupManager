@@ -40,10 +40,11 @@ namespace StartupManager
 
         private void AddNewBTN_Click(object sender, EventArgs e)
         {
+            MainForm MF = new MainForm();
             if (ProcessNametxt.Text != "" || ProcessPathtxt.Text != "")
             {
                 Functions.AddRow(MainForm.dataGridView1, path, ProcessNametxt.Text, (int)DelayUpDown.Value);
-                Functions.SaveFile(MainForm.dataGridView1, "startup.dat");
+                Functions.SaveFile(MainForm.dataGridView1, MF.absPath);
                 this.Close();
             }
             else

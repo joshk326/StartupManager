@@ -32,7 +32,7 @@ namespace StartupManager
             {
                 CurrentRow.SetValues(ProcessNametxt.Text, DelayUpDown.Value.ToString());
                 MF.dataGridView1.RefreshEdit();
-                Functions.SaveFile(MF.dataGridView1, "startup.dat");
+                Functions.SaveFile(MF.dataGridView1, MF.absPath);
                 this.Close();
             }
             else

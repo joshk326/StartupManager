@@ -17,7 +17,10 @@ namespace StartupManager
 {
     public partial class MainForm : Form
     {
-        public bool isStartup = Properties.Settings.Default.isStartUpEnabled;
+        private bool isStartup = Properties.Settings.Default.isStartUpEnabled;
+        private static string dirPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\StartupManager";
+        private static string fileName = "startup.dat";
+        public string absPath = Path.Combine(dirPath, fileName);
 
         public MainForm()
         {
@@ -43,14 +46,15 @@ namespace StartupManager
         private void Main_Load(object sender, EventArgs e)
         {
             FileStream fs;
-            if (!File.Exists("startup.dat"))
+            if (!File.Exists(absPath))
             {
-                fs = File.Create("startup.dat");
+                Directory.CreateDirectory(dirPath);
+                fs = File.Create(absPath);
                 fs.Close();
                 statusStripStatus.Text = "data file created";
             }
             
-            Functions.ReadFile(dataGridView1, "startup.dat");
+            Functions.ReadFile(dataGridView1, absPath);
 
             if (Properties.Settings.Default.firstStartUp) {
                 Properties.Settings.Default.firstStartUp = false;
@@ -108,7 +112,7 @@ namespace StartupManager
         private void Main_Closing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
-            Task save =  Task.Run(() => Functions.SaveFile(dataGridView1, "startup.dat"));
+            Task save =  Task.Run(() => Functions.SaveFile(dataGridView1, absPath));
             save.Wait();
             Environment.Exit(0);
         }
