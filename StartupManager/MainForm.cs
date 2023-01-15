@@ -51,9 +51,9 @@ namespace StartupManager
                 Environment.Exit(0);
             }
 
-            FileStream fs;
             if (!File.Exists(absPath))
             {
+                FileStream fs;
                 Directory.CreateDirectory(dirPath);
                 fs = File.Create(absPath);
                 fs.Close();
