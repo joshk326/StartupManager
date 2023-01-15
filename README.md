@@ -11,4 +11,4 @@ A multithreaded tool to add delay to process start up time after booting your co
 
 * Clone the repository 
 * Open the project file ```StartupManager.sln```
-* Click Start in the top menu bar (you may be prompted to restart Visual Studio in administrator mode)
+* Click Start in the top menu bar
