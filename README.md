@@ -1,6 +1,6 @@
 # Startup Manager
 
-Have you ever started your computer and had multiple programs all startup at once? Does this hinder your computers startup performance? I have created a multithreaded tool to add delay to process start up time after booting your computer in order to reduce the drag put on your startup performance.
+Have you ever started your computer and had multiple programs all startup at once? Does this hinder your computers startup performance? I have created a multithreaded tool to add delay to process start up time after booting your computer to reduce the drag put on your startup performance.
 
 <div align="center"><img src="/content/screenshot.png"></div>
 
