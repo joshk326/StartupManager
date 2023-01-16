@@ -12,7 +12,9 @@ namespace StartupManager
 {
     public partial class AddProcessForm : Form
     {
-        string path;
+        private string path;
+        private string fileName;
+        
         readonly MainForm MainForm = new MainForm();
         public AddProcessForm(MainForm f1obj)
         {
@@ -32,6 +34,8 @@ namespace StartupManager
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     path = openFileDialog.FileName;
+                    fileName = openFileDialog.SafeFileName;
+                    ProcessNametxt.Text = fileName;
                     ProcessPathtxt.Text = path;
                 }
             }
@@ -39,11 +43,10 @@ namespace StartupManager
 
         private void AddNewBTN_Click(object sender, EventArgs e)
         {
-            MainForm MF = new MainForm();
             if (ProcessNametxt.Text != "" || ProcessPathtxt.Text != "")
             {
                 Functions.AddRow(MainForm.dataGridView1, path, ProcessNametxt.Text, (int)DelayUpDown.Value);
-                Functions.SaveFile(MainForm.dataGridView1, MF.absPath);
+                Functions.SaveFile(MainForm.dataGridView1, MainForm.absPath);
                 this.Close();
             }
             else

@@ -134,7 +134,6 @@ public class Functions
     }
     public static void AddToStartUp()
     {
-        //string startupPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartup);
         string startupPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
         string shortcutPath = Path.Combine(startupPath, "StartupManager.lnk");
         if (!System.IO.File.Exists(@shortcutPath))
@@ -149,7 +148,6 @@ public class Functions
     }
     public static void RemoveFromStartUp()
     {
-        //string startupPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonStartup);
         string startupPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
         string shortcutPath = Path.Combine(startupPath, "StartupManager.lnk");
         if (System.IO.File.Exists(@shortcutPath))

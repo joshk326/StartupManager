@@ -1,13 +1,10 @@
 ﻿using StartupManager.Properties;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -151,7 +148,7 @@ namespace StartupManager
 
         private void AboutMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Startup Manager\nVersion: 1.0.0.0", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Startup Manager\nVersion: 1.0.0.1", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void SettingsMenuItem_Click(object sender, EventArgs e)
