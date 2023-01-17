@@ -94,7 +94,7 @@ namespace StartupManager
                     this.WindowState = FormWindowState.Normal;
                 }
                 
-                if (isStartup)
+                if (isStartup && dataGridView1.Rows.Count > 0)
                 {
                     int delay = 0;
                     for (int i = 0; i < dataGridView1.Rows.Count; i++)
