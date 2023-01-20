@@ -5,7 +5,8 @@ Have you ever started your computer and had multiple programs all startup at onc
 <div align="center"><img src="/content/screenshot.png"></div>
 
 ### Important Notes
-For some reason malwarebytes flags this software for MachineLearning/Anomalous.94%. In order to run the application if you have malwarebytes installed, you must add an exlusion to the allow list.
+ *For some reason malwarebytes flags this software for MachineLearning/Anomalous.94%. In order to run the application if you have malwarebytes installed, you must add an   exlusion to the allow list.
+ * If you are unable to add a file due to lack of privilage, run the application in administrator mode.
 
 ## Run Locally
 
