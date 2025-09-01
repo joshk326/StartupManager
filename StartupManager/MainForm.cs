@@ -1,24 +1,26 @@
 ﻿using StartupManager.Properties;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 
 namespace StartupManager
 {
     public partial class MainForm : Form
     {
-        private bool isStartup = Properties.Settings.Default.isStartUpEnabled;
-        private static string dirPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\StartupManager";
-        private static string fileName = "startup.dat";
-        public string absPath = Path.Combine(dirPath, fileName);
-        public string logPath = Path.Combine(dirPath, "log.txt");
+        private readonly bool startProcesses = Properties.Settings.Default.startProcesses;
+        private static readonly string dirPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\StartupManager";
+        private static readonly string fileName = "startup.bin";
+        private bool runningAllProcesses = false;
+        public string dataFilePath = Path.Combine(dirPath, fileName);
+        public Dictionary<string, string[]> processes = new Dictionary<string, string[]>();
+        public static string logPath = Path.Combine(dirPath, "log.txt");
 
         public MainForm()
         {
@@ -27,44 +29,32 @@ namespace StartupManager
             {
                 Settings.Default.Reset();
             }
-
         }
-
-        private void CreateProcessContext_Click(object sender, EventArgs e)
-        {
-            AddProcessForm addnew = new AddProcessForm(this);
-            addnew.Show();
-        }
-
-        private void RefreshToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            dataGridView1.Refresh();
-        }
-
         private void Main_Load(object sender, EventArgs e)
         {
-
-            if (Process.GetProcessesByName(Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1) {
+            if (Process.GetProcessesByName(Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1)
+            {
                 MessageBox.Show("Application is already running");
                 Environment.Exit(0);
             }
 
-            if (!File.Exists(absPath))
+            if (!File.Exists(dataFilePath))
             {
                 FileStream fs;
                 Directory.CreateDirectory(dirPath);
-                fs = File.Create(absPath);
+                fs = File.Create(dataFilePath);
                 fs.Close();
                 statusStripStatus.Text = "data file created";
             }
-            
 
-            Functions.ReadFile(dataGridView1, absPath);
+            processes = Functions.ReadFile(dataFilePath);
 
-            if (Properties.Settings.Default.firstStartUp) {
+            if (Properties.Settings.Default.firstStartUp)
+            {
                 Properties.Settings.Default.firstStartUp = false;
                 Properties.Settings.Default.taskbarMode = true;
                 Properties.Settings.Default.isStartUpEnabled = true;
+                Properties.Settings.Default.startProcesses = true;
                 Properties.Settings.Default.Save();
 
                 FileStream fs;
@@ -73,16 +63,17 @@ namespace StartupManager
 
                 this.WindowState = FormWindowState.Normal;
                 Functions.AddToStartUp();
-               
+
                 MessageBox.Show("Thank you for using Startup Manager!\nThe program will start in taskbar mode from now on.\nThis can be changed in the setings", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
+                // Clear out log file
                 if (File.Exists(logPath))
                 {
                     File.WriteAllText(logPath, string.Empty);
                 }
-                
+
                 if (Properties.Settings.Default.taskbarMode)
                 {
                     this.Hide();
@@ -93,48 +84,59 @@ namespace StartupManager
                     this.Show();
                     this.WindowState = FormWindowState.Normal;
                 }
-                
-                if (isStartup && dataGridView1.Rows.Count > 0)
+
+                if (startProcesses && processes.Count > 0)
                 {
-                    int delay = 0;
-                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                    {
-                        delay += Convert.ToInt32(dataGridView1.Rows[i].Cells["delayCol"].Value);
-                        statusStripStatus.Text = "starting process " + dataGridView1.Rows[i].Cells["nameCol"].Value.ToString();
-                    }
-                    Functions.StartProcesses(dataGridView1);
-                    Thread.Sleep((delay + 1) * 1000);
+                    runningAllProcesses = true;
+                    Thread worker = new Thread(new ThreadStart(StartAllProcesses));
+                    worker.Start();
                 }
             }
+
+            // Load processes into datagridview
+            foreach (KeyValuePair<string, string[]> item in processes)
+            {
+                Functions.AddRow(dataGridView1, item.Value[0], item.Key, Convert.ToInt32(item.Value[1]));
+            }
+            dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
+        }
+
+        private void CreateProcessContext_Click(object sender, EventArgs e)
+        {
+            ProcessForm addnew = new ProcessForm(this, "Add new process", "Add");
+            addnew.Show();
+        }
+
+        private void RefreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Refresh();
         }
 
         private void DeleteProcessToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int rowIndex = dataGridView1.CurrentCell.RowIndex;
-            dataGridView1.Rows.RemoveAt(rowIndex);
-            Functions.SaveFile(dataGridView1, absPath);
+            DataGridViewRow row = dataGridView1.CurrentRow;
+            processes.Remove(row.Cells[0].Value.ToString());
+            dataGridView1.Rows.RemoveAt(row.Index);
+            Functions.SaveFile(processes, dataFilePath);
+
             if (dataGridView1.RowCount == 0)
             {
                 editToolStripMenuItem.Visible = false;
                 deleteProcessToolStripMenuItem.Visible = false;
-                singleProcessStartMenuItem.Visible = false;
-                toolStripSeparator3.Visible = false;
             }
         }
-       
+
         private void Main_Closing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
-            Task save =  Task.Run(() => Functions.SaveFile(dataGridView1, absPath));
-            save.Wait();
+            Functions.SaveFile(processes, dataFilePath);
             Environment.Exit(0);
         }
 
         private void EditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EditForm EF = new EditForm();
-            EF.CurrentRow = dataGridView1.CurrentRow;
-            EF.Show();
+            ProcessForm addnew = new ProcessForm(this, "Edit", "Save", dataGridView1.CurrentRow);
+            addnew.Show();
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
@@ -143,12 +145,11 @@ namespace StartupManager
             dataGridView1.Columns[0].Width = Convert.ToInt32(dataGridView1.Size.Width * 0.14);
             dataGridView1.Columns[1].Width = Convert.ToInt32(dataGridView1.Size.Width * 0.31);
             dataGridView1.Columns[2].Width = Convert.ToInt32(dataGridView1.Size.Width * 0.5491);
-
         }
 
         private void AboutMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Startup Manager\nVersion: 1.0.0.1", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"Startup Manager\nVersion: {Application.ProductVersion}", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void SettingsMenuItem_Click(object sender, EventArgs e)
@@ -175,35 +176,27 @@ namespace StartupManager
             {
                 editToolStripMenuItem.Visible = true;
                 deleteProcessToolStripMenuItem.Visible = true;
-                singleProcessStartMenuItem.Visible = true;
-                toolStripSeparator3.Visible = true;
             }
         }
 
         private void AddToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddProcessForm addnew = new AddProcessForm(this);
+            ProcessForm addnew = new ProcessForm(this, "Add new process", "Add");
             addnew.Show();
         }
 
         private void StartAllProcessesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.Rows.Count > 0)
+            if (processes.Count > 0 && !runningAllProcesses)
             {
-                int delay = 0;
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    delay += Convert.ToInt32(dataGridView1.Rows[i].Cells["delayCol"].Value);
-                    statusStripStatus.ForeColor = Color.Gray;
-                    statusStripStatus.Text = "Starting " + dataGridView1[0, i].Value;
-                }
-                Functions.StartProcesses(dataGridView1);
-                Thread.Sleep((delay + 1) * 1000);
+                runningAllProcesses = true;
+                Thread worker = new Thread(new ThreadStart(StartAllProcesses));
+                worker.Start();
             }
             else
             {
                 statusStripStatus.ForeColor = Color.Red;
-                statusStripStatus.Text = "No processes to start";
+                statusStripStatus.Text = runningAllProcesses ? "already running all processes" : "no processes to start";
             }
         }
 
@@ -212,10 +205,15 @@ namespace StartupManager
             Environment.Exit(0);
         }
 
-        private void SingleProcessStartMenuItem_Click(object sender, EventArgs e)
+        private void StartAllProcesses()
         {
-            Functions.SingleProcessStart(dataGridView1.CurrentRow);
-            statusStripStatus.Text = "starting process " + dataGridView1.CurrentRow.Cells["nameCol"].Value.ToString();
+            foreach (KeyValuePair<string, string[]> item in processes.OrderBy(pair => pair.Value[1]))
+            {
+                statusStripStatus.ForeColor = Color.Gray;
+                statusStripStatus.Text = $"starting {item.Key}...";
+                Functions.StartProcess(item.Key, item.Value[0], Convert.ToInt32(item.Value[1]));
+            }
+            runningAllProcesses = false;
         }
     }
 }
