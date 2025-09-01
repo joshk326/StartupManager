@@ -32,25 +32,6 @@ namespace StartupManager
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ToolBarStrip = new System.Windows.Forms.StatusStrip();
-            this.DgvContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.deleteProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.nameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.delayCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pathCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TaskTrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.TaskTrayContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.statusStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusStripStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.singleProcessStartMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsDropDown = new System.Windows.Forms.ToolStripDropDownButton();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startAllProcessesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,8 +40,25 @@ namespace StartupManager
             this.HelpDropDown = new System.Windows.Forms.ToolStripDropDownButton();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SettingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DgvContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.nameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.delayCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pathCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TaskTrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.TaskTrayContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStripStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.ToolBarStrip.SuspendLayout();
             this.DgvContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -83,40 +81,126 @@ namespace StartupManager
             this.ToolBarStrip.SizingGrip = false;
             this.ToolBarStrip.TabIndex = 0;
             // 
+            // optionsDropDown
+            // 
+            this.optionsDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.startAllProcessesToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.exitToolStripMenuItem1});
+            this.optionsDropDown.Image = global::StartupManager.Properties.Resources.appbar_list;
+            this.optionsDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.optionsDropDown.Name = "optionsDropDown";
+            this.optionsDropDown.Size = new System.Drawing.Size(83, 20);
+            this.optionsDropDown.Text = "Options";
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Image = global::StartupManager.Properties.Resources.appbar_add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.addToolStripMenuItem.Text = "Add New Process";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.AddToolStripMenuItem_Click);
+            // 
+            // startAllProcessesToolStripMenuItem
+            // 
+            this.startAllProcessesToolStripMenuItem.Image = global::StartupManager.Properties.Resources.appbar_camera_flash;
+            this.startAllProcessesToolStripMenuItem.Name = "startAllProcessesToolStripMenuItem";
+            this.startAllProcessesToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.startAllProcessesToolStripMenuItem.Text = "Run All";
+            this.startAllProcessesToolStripMenuItem.Click += new System.EventHandler(this.StartAllProcessesToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(181, 6);
+            // 
+            // exitToolStripMenuItem1
+            // 
+            this.exitToolStripMenuItem1.Image = global::StartupManager.Properties.Resources.appbar_close;
+            this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(184, 26);
+            this.exitToolStripMenuItem1.Text = "Exit";
+            this.exitToolStripMenuItem1.Click += new System.EventHandler(this.ExitToolStripMenuItem1_Click);
+            // 
+            // HelpDropDown
+            // 
+            this.HelpDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AboutMenuItem,
+            this.SettingsMenuItem});
+            this.HelpDropDown.Image = global::StartupManager.Properties.Resources.appbar_book_perspective_help;
+            this.HelpDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.HelpDropDown.Name = "HelpDropDown";
+            this.HelpDropDown.Size = new System.Drawing.Size(66, 20);
+            this.HelpDropDown.Text = "Help";
+            // 
+            // AboutMenuItem
+            // 
+            this.AboutMenuItem.Image = global::StartupManager.Properties.Resources.appbar_information_circle;
+            this.AboutMenuItem.Name = "AboutMenuItem";
+            this.AboutMenuItem.Size = new System.Drawing.Size(123, 26);
+            this.AboutMenuItem.Text = "About";
+            this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
+            // 
+            // SettingsMenuItem
+            // 
+            this.SettingsMenuItem.Image = global::StartupManager.Properties.Resources.appbar_settings;
+            this.SettingsMenuItem.Name = "SettingsMenuItem";
+            this.SettingsMenuItem.Size = new System.Drawing.Size(123, 26);
+            this.SettingsMenuItem.Text = "Settings";
+            this.SettingsMenuItem.Click += new System.EventHandler(this.SettingsMenuItem_Click);
+            // 
             // DgvContextMenu
             // 
             this.DgvContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.DgvContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.refreshToolStripMenuItem,
-            this.toolStripSeparator2,
             this.newProcessToolStripMenuItem,
+            this.toolStripSeparator2,
             this.editToolStripMenuItem,
-            this.deleteProcessToolStripMenuItem,
-            this.toolStripSeparator3,
-            this.singleProcessStartMenuItem});
+            this.deleteProcessToolStripMenuItem});
             this.DgvContextMenu.Name = "contextMenuStrip1";
-            this.DgvContextMenu.Size = new System.Drawing.Size(167, 146);
+            this.DgvContextMenu.Size = new System.Drawing.Size(122, 114);
             this.DgvContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.DgvContextMenu_Opening);
+            // 
+            // refreshToolStripMenuItem
+            // 
+            this.refreshToolStripMenuItem.Image = global::StartupManager.Properties.Resources.appbar_refresh;
+            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(121, 26);
+            this.refreshToolStripMenuItem.Text = "Refresh";
+            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.RefreshToolStripMenuItem_Click);
+            // 
+            // newProcessToolStripMenuItem
+            // 
+            this.newProcessToolStripMenuItem.Image = global::StartupManager.Properties.Resources.appbar_add;
+            this.newProcessToolStripMenuItem.Name = "newProcessToolStripMenuItem";
+            this.newProcessToolStripMenuItem.Size = new System.Drawing.Size(121, 26);
+            this.newProcessToolStripMenuItem.Text = "Add";
+            this.newProcessToolStripMenuItem.Click += new System.EventHandler(this.CreateProcessContext_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(163, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(118, 6);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Image = global::StartupManager.Properties.Resources.appbar_edit_box;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(121, 26);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Visible = false;
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.EditToolStripMenuItem_Click);
             // 
             // deleteProcessToolStripMenuItem
             // 
             this.deleteProcessToolStripMenuItem.Image = global::StartupManager.Properties.Resources.appbar_delete;
             this.deleteProcessToolStripMenuItem.Name = "deleteProcessToolStripMenuItem";
-            this.deleteProcessToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
+            this.deleteProcessToolStripMenuItem.Size = new System.Drawing.Size(121, 26);
             this.deleteProcessToolStripMenuItem.Text = "Remove";
             this.deleteProcessToolStripMenuItem.Visible = false;
             this.deleteProcessToolStripMenuItem.Click += new System.EventHandler(this.DeleteProcessToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(163, 6);
-            this.toolStripSeparator3.Visible = false;
             // 
             // openFileDialog1
             // 
@@ -131,13 +215,13 @@ namespace StartupManager
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.ColumnHeadersHeight = 29;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameCol,
             this.delayCol,
             this.pathCol});
             this.dataGridView1.ContextMenuStrip = this.DgvContextMenu;
             this.dataGridView1.Location = new System.Drawing.Point(12, 25);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
@@ -188,12 +272,28 @@ namespace StartupManager
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.TaskTrayContextMenu.Name = "TaskTrayContextMenu";
-            this.TaskTrayContextMenu.Size = new System.Drawing.Size(200, 62);
+            this.TaskTrayContextMenu.Size = new System.Drawing.Size(172, 62);
+            // 
+            // showApplicationToolStripMenuItem
+            // 
+            this.showApplicationToolStripMenuItem.Image = global::StartupManager.Properties.Resources.appbar_arrow_expand;
+            this.showApplicationToolStripMenuItem.Name = "showApplicationToolStripMenuItem";
+            this.showApplicationToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
+            this.showApplicationToolStripMenuItem.Text = "Show Application";
+            this.showApplicationToolStripMenuItem.Click += new System.EventHandler(this.ShowApplicationTaskItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(196, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(168, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Image = global::StartupManager.Properties.Resources.appbar_close;
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitTaskItem_Click);
             // 
             // statusStrip1
             // 
@@ -201,16 +301,16 @@ namespace StartupManager
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusStripLabel,
             this.statusStripStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 465);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 469);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(369, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(369, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // statusStripLabel
             // 
             this.statusStripLabel.Name = "statusStripLabel";
-            this.statusStripLabel.Size = new System.Drawing.Size(52, 20);
+            this.statusStripLabel.Size = new System.Drawing.Size(42, 17);
             this.statusStripLabel.Text = "Status:";
             // 
             // statusStripStatus
@@ -218,131 +318,12 @@ namespace StartupManager
             this.statusStripStatus.ForeColor = System.Drawing.Color.Gray;
             this.statusStripStatus.LinkColor = System.Drawing.SystemColors.Control;
             this.statusStripStatus.Name = "statusStripStatus";
-            this.statusStripStatus.Size = new System.Drawing.Size(43, 20);
+            this.statusStripStatus.Size = new System.Drawing.Size(35, 17);
             this.statusStripStatus.Text = "idle...";
-            // 
-            // refreshToolStripMenuItem
-            // 
-            this.refreshToolStripMenuItem.Image = global::StartupManager.Properties.Resources.appbar_refresh;
-            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
-            this.refreshToolStripMenuItem.Text = "Refresh";
-            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.RefreshToolStripMenuItem_Click);
-            // 
-            // newProcessToolStripMenuItem
-            // 
-            this.newProcessToolStripMenuItem.Image = global::StartupManager.Properties.Resources.appbar_add;
-            this.newProcessToolStripMenuItem.Name = "newProcessToolStripMenuItem";
-            this.newProcessToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
-            this.newProcessToolStripMenuItem.Text = "Add";
-            this.newProcessToolStripMenuItem.Click += new System.EventHandler(this.CreateProcessContext_Click);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Image = global::StartupManager.Properties.Resources.appbar_edit_box;
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
-            this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Visible = false;
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.EditToolStripMenuItem_Click);
-            // 
-            // singleProcessStartMenuItem
-            // 
-            this.singleProcessStartMenuItem.Image = global::StartupManager.Properties.Resources.appbar_camera_flash;
-            this.singleProcessStartMenuItem.Name = "singleProcessStartMenuItem";
-            this.singleProcessStartMenuItem.Size = new System.Drawing.Size(166, 26);
-            this.singleProcessStartMenuItem.Text = "Start Process";
-            this.singleProcessStartMenuItem.Visible = false;
-            this.singleProcessStartMenuItem.Click += new System.EventHandler(this.SingleProcessStartMenuItem_Click);
-            // 
-            // optionsDropDown
-            // 
-            this.optionsDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem,
-            this.startAllProcessesToolStripMenuItem,
-            this.toolStripSeparator5,
-            this.exitToolStripMenuItem1});
-            this.optionsDropDown.Image = global::StartupManager.Properties.Resources.appbar_list;
-            this.optionsDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.optionsDropDown.Name = "optionsDropDown";
-            this.optionsDropDown.Size = new System.Drawing.Size(93, 20);
-            this.optionsDropDown.Text = "Options";
-            // 
-            // addToolStripMenuItem
-            // 
-            this.addToolStripMenuItem.Image = global::StartupManager.Properties.Resources.appbar_add;
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
-            this.addToolStripMenuItem.Text = "Add New Process";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.AddToolStripMenuItem_Click);
-            // 
-            // startAllProcessesToolStripMenuItem
-            // 
-            this.startAllProcessesToolStripMenuItem.Image = global::StartupManager.Properties.Resources.appbar_camera_flash;
-            this.startAllProcessesToolStripMenuItem.Name = "startAllProcessesToolStripMenuItem";
-            this.startAllProcessesToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
-            this.startAllProcessesToolStripMenuItem.Text = "Run All";
-            this.startAllProcessesToolStripMenuItem.Click += new System.EventHandler(this.StartAllProcessesToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(204, 6);
-            // 
-            // exitToolStripMenuItem1
-            // 
-            this.exitToolStripMenuItem1.Image = global::StartupManager.Properties.Resources.appbar_close;
-            this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(207, 26);
-            this.exitToolStripMenuItem1.Text = "Exit";
-            this.exitToolStripMenuItem1.Click += new System.EventHandler(this.ExitToolStripMenuItem1_Click);
-            // 
-            // HelpDropDown
-            // 
-            this.HelpDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AboutMenuItem,
-            this.SettingsMenuItem});
-            this.HelpDropDown.Image = global::StartupManager.Properties.Resources.appbar_book_perspective_help;
-            this.HelpDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.HelpDropDown.Name = "HelpDropDown";
-            this.HelpDropDown.Size = new System.Drawing.Size(71, 20);
-            this.HelpDropDown.Text = "Help";
-            // 
-            // AboutMenuItem
-            // 
-            this.AboutMenuItem.Image = global::StartupManager.Properties.Resources.appbar_information_circle;
-            this.AboutMenuItem.Name = "AboutMenuItem";
-            this.AboutMenuItem.Size = new System.Drawing.Size(143, 26);
-            this.AboutMenuItem.Text = "About";
-            this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
-            // 
-            // SettingsMenuItem
-            // 
-            this.SettingsMenuItem.Image = global::StartupManager.Properties.Resources.appbar_settings;
-            this.SettingsMenuItem.Name = "SettingsMenuItem";
-            this.SettingsMenuItem.Size = new System.Drawing.Size(143, 26);
-            this.SettingsMenuItem.Text = "Settings";
-            this.SettingsMenuItem.Click += new System.EventHandler(this.SettingsMenuItem_Click);
-            // 
-            // showApplicationToolStripMenuItem
-            // 
-            this.showApplicationToolStripMenuItem.Image = global::StartupManager.Properties.Resources.appbar_arrow_expand;
-            this.showApplicationToolStripMenuItem.Name = "showApplicationToolStripMenuItem";
-            this.showApplicationToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
-            this.showApplicationToolStripMenuItem.Text = "Show Application";
-            this.showApplicationToolStripMenuItem.Click += new System.EventHandler(this.ShowApplicationTaskItem_Click);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Image = global::StartupManager.Properties.Resources.appbar_close;
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitTaskItem_Click);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(369, 491);
             this.Controls.Add(this.statusStrip1);
@@ -395,8 +376,6 @@ namespace StartupManager
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel statusStripLabel;
         private System.Windows.Forms.ToolStripStatusLabel statusStripStatus;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripMenuItem singleProcessStartMenuItem;
         private System.Windows.Forms.ToolStripDropDownButton optionsDropDown;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startAllProcessesToolStripMenuItem;

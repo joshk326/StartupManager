@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Windows.Forms;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace StartupManager
 {
@@ -20,7 +12,7 @@ namespace StartupManager
         }
 
         private void SettingsForm_Load(object sender, EventArgs e)
-        { 
+        {
             if (Properties.Settings.Default.isStartUpEnabled == true)
             {
                 StartUpCheckBox.Checked = true;
@@ -30,6 +22,11 @@ namespace StartupManager
             {
                 TaskbarModeCheckBox.Checked = true;
             }
+
+            if (Properties.Settings.Default.startProcesses == true)
+            {
+                StartProcessesCheckBox.Checked = true;
+            }
         }
 
         private void StartUpCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -38,7 +35,6 @@ namespace StartupManager
             {
                 Properties.Settings.Default.isStartUpEnabled = true;
                 Properties.Settings.Default.Save();
-
                 Functions.AddToStartUp();
             }
             else
@@ -65,9 +61,21 @@ namespace StartupManager
 
         private void OpenLogBTN_Click(object sender, EventArgs e)
         {
-            MainForm MF = new MainForm();
-            Process.Start("explorer.exe", "/select," + MF.logPath);
+            Process.Start("explorer.exe", "/select," + MainForm.logPath);
+        }
 
+        private void StartProcessesCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (StartProcessesCheckBox.Checked == true)
+            {
+                Properties.Settings.Default.startProcesses = true;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Properties.Settings.Default.startProcesses = false;
+                Properties.Settings.Default.Save();
+            }
         }
     }
 }
